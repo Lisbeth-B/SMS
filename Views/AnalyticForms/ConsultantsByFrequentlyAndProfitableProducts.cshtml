@@ -1,0 +1,109 @@
+﻿@model IEnumerable<SalesManagementSystem.db.GetConsultantsByFrequentlyAndProfitableProducts_Result>
+
+<h2>კონსულტანტები ყველაზე გაყიდვადი პროდუქტების მიხედვით </h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.Label("Start Date", htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-11">
+                @Html.Editor("StartDate", new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @max = "9999-12-31T23:59", @step = "1" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("End Date", htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-11">
+                @Html.Editor("EndDate", new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @max = "9999-12-31T23:59", @step = "1" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-11">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsultantId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsultantName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsultantSurname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsultantIdNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsultantDateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FrequentlySoldProductCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FrequentlySoldProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FrequentlySoldProductTotalPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfitableProductCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfitableProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfitableProductTotalPrice)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsultantId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsultantName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsultantSurname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsultantIdNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsultantDateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FrequentlySoldProductCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FrequentlySoldProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FrequentlySoldProductTotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfitableProductCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfitableProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfitableProductTotalPrice)
+            </td>
+        </tr>
+    }
+
+</table>
+

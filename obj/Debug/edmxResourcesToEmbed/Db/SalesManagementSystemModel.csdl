@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SalesManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="SalesManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="GetConsultantByFrequentlyAndProfitableProducts" IsComposable="true" ReturnType="Collection(SalesManagementSystemModel.GetConsultantByFrequentlyAndProfitableProducts_Result)">
+      <Parameter Name="ConsultantId" Mode="In" Type="Int32" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTimeOffset" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTimeOffset" />
+    </FunctionImport>
+    <FunctionImport Name="GetConsultantSales" IsComposable="true" ReturnType="Collection(SalesManagementSystemModel.GetConsultantSales_Result)">
+      <Parameter Name="ConsultantId" Mode="In" Type="Int32" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTimeOffset" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTimeOffset" />
+    </FunctionImport>
+    <FunctionImport Name="GetConsultantsByFrequentlyAndProfitableProducts" ReturnType="Collection(SalesManagementSystemModel.GetConsultantsByFrequentlyAndProfitableProducts_Result)">
+      <Parameter Name="StartDateProvided" Mode="In" Type="DateTimeOffset" />
+      <Parameter Name="EndDateProvided" Mode="In" Type="DateTimeOffset" />
+    </FunctionImport>
+    <FunctionImport Name="GetConsultantsByFrequentlySoldProduct" ReturnType="Collection(SalesManagementSystemModel.GetConsultantsByFrequentlySoldProduct_Result)">
+      <Parameter Name="StartDate" Mode="In" Type="DateTimeOffset" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTimeOffset" />
+      <Parameter Name="ProductCode" Mode="In" Type="Int32" />
+      <Parameter Name="ProductMinAmount" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetConsultantsSales" ReturnType="Collection(SalesManagementSystemModel.GetConsultantsSales_Result)">
+      <Parameter Name="StartDateProvided" Mode="In" Type="DateTimeOffset" />
+      <Parameter Name="EndDateProvided" Mode="In" Type="DateTimeOffset" />
+    </FunctionImport>
+    <FunctionImport Name="GetOrdersByConsultant" ReturnType="Collection(SalesManagementSystemModel.GetOrdersByConsultant_Result)">
+      <Parameter Name="StartDate" Mode="In" Type="DateTimeOffset" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTimeOffset" />
+    </FunctionImport>
+    <FunctionImport Name="GetOrdersByProductPrice" ReturnType="Collection(SalesManagementSystemModel.GetOrdersByProductPrice_Result)">
+      <Parameter Name="StartDate" Mode="In" Type="DateTimeOffset" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTimeOffset" />
+      <Parameter Name="MinPrice" Mode="In" Type="Decimal" />
+      <Parameter Name="MaxPrice" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <EntitySet Name="Consultants" EntityType="SalesManagementSystemModel.Consultant" />
+    <EntitySet Name="Orders" EntityType="SalesManagementSystemModel.Order" />
+    <EntitySet Name="OrderLineItems" EntityType="SalesManagementSystemModel.OrderLineItem" />
+    <EntitySet Name="Products" EntityType="SalesManagementSystemModel.Product" />
+    <EntitySet Name="Sexes" EntityType="SalesManagementSystemModel.Sex" />
+    <AssociationSet Name="FK_Consultant_ReferrerId" Association="SalesManagementSystemModel.FK_Consultant_ReferrerId">
+      <End Role="Consultant" EntitySet="Consultants" />
+      <End Role="Consultant1" EntitySet="Consultants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Consultant_Sex" Association="SalesManagementSystemModel.FK_Consultant_Sex">
+      <End Role="Sex" EntitySet="Sexes" />
+      <End Role="Consultant" EntitySet="Consultants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Consultant" Association="SalesManagementSystemModel.FK_Order_Consultant">
+      <End Role="Consultant" EntitySet="Consultants" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderLine_OrderId" Association="SalesManagementSystemModel.FK_OrderLine_OrderId">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderLineItem" EntitySet="OrderLineItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderLine_ProductCode" Association="SalesManagementSystemModel.FK_OrderLine_ProductCode">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrderLineItem" EntitySet="OrderLineItems" />
+    </AssociationSet>
+    <FunctionImport Name="GetConsultantsSales2" ReturnType="Collection(SalesManagementSystemModel.GetConsultantsSales2_Result)">
+      <Parameter Name="StartDateProvided" Mode="In" Type="DateTimeOffset" />
+      <Parameter Name="EndDateProvided" Mode="In" Type="DateTimeOffset" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GetConsultantByFrequentlyAndProfitableProducts_Result">
+    <Property Type="Int32" Name="ConsultantId" Nullable="true" />
+    <Property Type="String" Name="ConsultantName" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ConsultantSurname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ConsultantIdNumber" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="ConsultantDateOfBirth" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="FrequentlySoldProductCode" Nullable="true" />
+    <Property Type="String" Name="FrequentlySoldProductName" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="FrequentlySoldProductTotalPrice" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="Int32" Name="ProfitableProductCode" Nullable="true" />
+    <Property Type="String" Name="ProfitableProductName" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="ProfitableProductTotalPrice" Nullable="true" Precision="19" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="GetConsultantSales_Result">
+    <Property Type="Int32" Name="ConsultantId" Nullable="false" />
+    <Property Type="String" Name="ConsultantName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ConsultantSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ConsultantIdNumber" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="ConsultantDateOfBirth" Nullable="false" Precision="10" />
+    <Property Type="Decimal" Name="TotalSales" Nullable="true" Precision="38" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="GetConsultantsByFrequentlyAndProfitableProducts_Result">
+    <Property Type="Int32" Name="ConsultantId" Nullable="true" />
+    <Property Type="String" Name="ConsultantName" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ConsultantSurname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ConsultantIdNumber" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="ConsultantDateOfBirth" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="FrequentlySoldProductCode" Nullable="true" />
+    <Property Type="String" Name="FrequentlySoldProductName" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="FrequentlySoldProductTotalPrice" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="Int32" Name="ProfitableProductCode" Nullable="true" />
+    <Property Type="String" Name="ProfitableProductName" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="ProfitableProductTotalPrice" Nullable="true" Precision="19" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="GetConsultantsByFrequentlySoldProduct_Result">
+    <Property Type="Int32" Name="ConsultantId" Nullable="true" />
+    <Property Type="String" Name="ConsultantName" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ConsultantSurname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ConsultantIdNumber" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="ConsultantDateOfBirth" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ProductCodes" Nullable="true" />
+    <Property Type="Int32" Name="ProductQuantity" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetConsultantsSales_Result">
+    <Property Type="Int32" Name="ConsultantId" Nullable="true" />
+    <Property Type="String" Name="ConsultantName" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ConsultantSurname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ConsultantIdNumber" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="ConsultantDateOfBirth" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="TotalSales" Nullable="true" Precision="19" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="GetOrdersByConsultant_Result">
+    <Property Type="Int32" Name="OrderId" Nullable="false" />
+    <Property Type="DateTimeOffset" Name="OrderDate" Nullable="false" />
+    <Property Type="Int32" Name="ConsultantId" Nullable="false" />
+    <Property Type="String" Name="ConsultantName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ConsultantSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ConsultantIdNumber" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="ProductQuantity" Nullable="true" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="38" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="GetOrdersByProductPrice_Result">
+    <Property Type="Int32" Name="OrderId" Nullable="false" />
+    <Property Type="DateTimeOffset" Name="OrderDate" Nullable="false" />
+    <Property Type="Int32" Name="ConsultantId" Nullable="false" />
+    <Property Type="String" Name="ConsultantName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ConsultantSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ConsultantIdNumber" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="ProductQuantity" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="Consultant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Sex" Type="Byte" Nullable="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ReferrerId" Type="Int32" />
+    <NavigationProperty Name="Consultant1" Relationship="SalesManagementSystemModel.FK_Consultant_ReferrerId" FromRole="Consultant" ToRole="Consultant1" />
+    <NavigationProperty Name="Consultant2" Relationship="SalesManagementSystemModel.FK_Consultant_ReferrerId" FromRole="Consultant1" ToRole="Consultant" />
+    <NavigationProperty Name="Sex1" Relationship="SalesManagementSystemModel.FK_Consultant_Sex" FromRole="Consultant" ToRole="Sex" />
+    <NavigationProperty Name="Orders" Relationship="SalesManagementSystemModel.FK_Order_Consultant" FromRole="Consultant" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTimeOffset" Nullable="false" Precision="7" />
+    <Property Name="ConsultantId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Consultant" Relationship="SalesManagementSystemModel.FK_Order_Consultant" FromRole="Order" ToRole="Consultant" />
+    <NavigationProperty Name="OrderLineItems" Relationship="SalesManagementSystemModel.FK_OrderLine_OrderId" FromRole="Order" ToRole="OrderLineItem" />
+  </EntityType>
+  <EntityType Name="OrderLineItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="ProductCode" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="SalesManagementSystemModel.FK_OrderLine_OrderId" FromRole="OrderLineItem" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="SalesManagementSystemModel.FK_OrderLine_ProductCode" FromRole="OrderLineItem" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <NavigationProperty Name="OrderLineItems" Relationship="SalesManagementSystemModel.FK_OrderLine_ProductCode" FromRole="Product" ToRole="OrderLineItem" />
+  </EntityType>
+  <EntityType Name="Sex">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Byte" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Consultants" Relationship="SalesManagementSystemModel.FK_Consultant_Sex" FromRole="Sex" ToRole="Consultant" />
+  </EntityType>
+  <Association Name="FK_Consultant_ReferrerId">
+    <End Type="SalesManagementSystemModel.Consultant" Role="Consultant" Multiplicity="0..1" />
+    <End Type="SalesManagementSystemModel.Consultant" Role="Consultant1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Consultant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Consultant1">
+        <PropertyRef Name="ReferrerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Consultant_Sex">
+    <End Type="SalesManagementSystemModel.Sex" Role="Sex" Multiplicity="1" />
+    <End Type="SalesManagementSystemModel.Consultant" Role="Consultant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sex">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Consultant">
+        <PropertyRef Name="Sex" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Consultant">
+    <End Type="SalesManagementSystemModel.Consultant" Role="Consultant" Multiplicity="1" />
+    <End Type="SalesManagementSystemModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Consultant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="ConsultantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderLine_OrderId">
+    <End Type="SalesManagementSystemModel.Order" Role="Order" Multiplicity="1" />
+    <End Type="SalesManagementSystemModel.OrderLineItem" Role="OrderLineItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderLineItem">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderLine_ProductCode">
+    <End Type="SalesManagementSystemModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="SalesManagementSystemModel.OrderLineItem" Role="OrderLineItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Code" />
+      </Principal>
+      <Dependent Role="OrderLineItem">
+        <PropertyRef Name="ProductCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="GetConsultantsSales2_Result">
+    <Property Type="Int32" Name="ConsultantId" Nullable="false" />
+    <Property Type="Int32" Name="ConsultantReferrerId" Nullable="true" />
+    <Property Type="String" Name="ConsultantName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ConsultantSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ConsultantIdNumber" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="ConsultantDateOfBirth" Nullable="false" />
+    <Property Type="Decimal" Name="TotalSales" Nullable="true" Precision="38" Scale="4" />
+  </ComplexType>
+</Schema>

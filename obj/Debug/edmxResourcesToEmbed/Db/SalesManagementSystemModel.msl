@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SalesManagementSystemModelStoreContainer" CdmEntityContainer="SalesManagementSystemEntities">
+    <FunctionImportMapping FunctionImportName="GetConsultantByFrequentlyAndProfitableProducts" FunctionName="SalesManagementSystemModel.Store.GetConsultantByFrequentlyAndProfitableProducts">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SalesManagementSystemModel.GetConsultantByFrequentlyAndProfitableProducts_Result">
+          <ScalarProperty Name="ConsultantId" ColumnName="ConsultantId" />
+          <ScalarProperty Name="ConsultantName" ColumnName="ConsultantName" />
+          <ScalarProperty Name="ConsultantSurname" ColumnName="ConsultantSurname" />
+          <ScalarProperty Name="ConsultantIdNumber" ColumnName="ConsultantIdNumber" />
+          <ScalarProperty Name="ConsultantDateOfBirth" ColumnName="ConsultantDateOfBirth" />
+          <ScalarProperty Name="FrequentlySoldProductCode" ColumnName="FrequentlySoldProductCode" />
+          <ScalarProperty Name="FrequentlySoldProductName" ColumnName="FrequentlySoldProductName" />
+          <ScalarProperty Name="FrequentlySoldProductTotalPrice" ColumnName="FrequentlySoldProductTotalPrice" />
+          <ScalarProperty Name="ProfitableProductCode" ColumnName="ProfitableProductCode" />
+          <ScalarProperty Name="ProfitableProductName" ColumnName="ProfitableProductName" />
+          <ScalarProperty Name="ProfitableProductTotalPrice" ColumnName="ProfitableProductTotalPrice" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetConsultantSales" FunctionName="SalesManagementSystemModel.Store.GetConsultantSales">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SalesManagementSystemModel.GetConsultantSales_Result">
+          <ScalarProperty Name="ConsultantId" ColumnName="ConsultantId" />
+          <ScalarProperty Name="ConsultantName" ColumnName="ConsultantName" />
+          <ScalarProperty Name="ConsultantSurname" ColumnName="ConsultantSurname" />
+          <ScalarProperty Name="ConsultantIdNumber" ColumnName="ConsultantIdNumber" />
+          <ScalarProperty Name="ConsultantDateOfBirth" ColumnName="ConsultantDateOfBirth" />
+          <ScalarProperty Name="TotalSales" ColumnName="TotalSales" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetConsultantsByFrequentlyAndProfitableProducts" FunctionName="SalesManagementSystemModel.Store.GetConsultantsByFrequentlyAndProfitableProducts">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SalesManagementSystemModel.GetConsultantsByFrequentlyAndProfitableProducts_Result">
+          <ScalarProperty Name="ConsultantId" ColumnName="ConsultantId" />
+          <ScalarProperty Name="ConsultantName" ColumnName="ConsultantName" />
+          <ScalarProperty Name="ConsultantSurname" ColumnName="ConsultantSurname" />
+          <ScalarProperty Name="ConsultantIdNumber" ColumnName="ConsultantIdNumber" />
+          <ScalarProperty Name="ConsultantDateOfBirth" ColumnName="ConsultantDateOfBirth" />
+          <ScalarProperty Name="FrequentlySoldProductCode" ColumnName="FrequentlySoldProductCode" />
+          <ScalarProperty Name="FrequentlySoldProductName" ColumnName="FrequentlySoldProductName" />
+          <ScalarProperty Name="FrequentlySoldProductTotalPrice" ColumnName="FrequentlySoldProductTotalPrice" />
+          <ScalarProperty Name="ProfitableProductCode" ColumnName="ProfitableProductCode" />
+          <ScalarProperty Name="ProfitableProductName" ColumnName="ProfitableProductName" />
+          <ScalarProperty Name="ProfitableProductTotalPrice" ColumnName="ProfitableProductTotalPrice" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetConsultantsByFrequentlySoldProduct" FunctionName="SalesManagementSystemModel.Store.GetConsultantsByFrequentlySoldProduct">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SalesManagementSystemModel.GetConsultantsByFrequentlySoldProduct_Result">
+          <ScalarProperty Name="ConsultantId" ColumnName="ConsultantId" />
+          <ScalarProperty Name="ConsultantName" ColumnName="ConsultantName" />
+          <ScalarProperty Name="ConsultantSurname" ColumnName="ConsultantSurname" />
+          <ScalarProperty Name="ConsultantIdNumber" ColumnName="ConsultantIdNumber" />
+          <ScalarProperty Name="ConsultantDateOfBirth" ColumnName="ConsultantDateOfBirth" />
+          <ScalarProperty Name="ProductCodes" ColumnName="ProductCodes" />
+          <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetConsultantsSales" FunctionName="SalesManagementSystemModel.Store.GetConsultantsSales">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SalesManagementSystemModel.GetConsultantsSales_Result">
+          <ScalarProperty Name="ConsultantId" ColumnName="ConsultantId" />
+          <ScalarProperty Name="ConsultantName" ColumnName="ConsultantName" />
+          <ScalarProperty Name="ConsultantSurname" ColumnName="ConsultantSurname" />
+          <ScalarProperty Name="ConsultantIdNumber" ColumnName="ConsultantIdNumber" />
+          <ScalarProperty Name="ConsultantDateOfBirth" ColumnName="ConsultantDateOfBirth" />
+          <ScalarProperty Name="TotalSales" ColumnName="TotalSales" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetOrdersByConsultant" FunctionName="SalesManagementSystemModel.Store.GetOrdersByConsultant">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SalesManagementSystemModel.GetOrdersByConsultant_Result">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="ConsultantId" ColumnName="ConsultantId" />
+          <ScalarProperty Name="ConsultantName" ColumnName="ConsultantName" />
+          <ScalarProperty Name="ConsultantSurname" ColumnName="ConsultantSurname" />
+          <ScalarProperty Name="ConsultantIdNumber" ColumnName="ConsultantIdNumber" />
+          <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetOrdersByProductPrice" FunctionName="SalesManagementSystemModel.Store.GetOrdersByProductPrice">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SalesManagementSystemModel.GetOrdersByProductPrice_Result">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="ConsultantId" ColumnName="ConsultantId" />
+          <ScalarProperty Name="ConsultantName" ColumnName="ConsultantName" />
+          <ScalarProperty Name="ConsultantSurname" ColumnName="ConsultantSurname" />
+          <ScalarProperty Name="ConsultantIdNumber" ColumnName="ConsultantIdNumber" />
+          <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Consultants">
+      <EntityTypeMapping TypeName="SalesManagementSystemModel.Consultant">
+        <MappingFragment StoreEntitySet="Consultant">
+          <ScalarProperty Name="ReferrerId" ColumnName="ReferrerId" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="SalesManagementSystemModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="ConsultantId" ColumnName="ConsultantId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderLineItems">
+      <EntityTypeMapping TypeName="SalesManagementSystemModel.OrderLineItem">
+        <MappingFragment StoreEntitySet="OrderLineItem">
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="SalesManagementSystemModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sexes">
+      <EntityTypeMapping TypeName="SalesManagementSystemModel.Sex">
+        <MappingFragment StoreEntitySet="Sex">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetConsultantsSales2" FunctionName="SalesManagementSystemModel.Store.GetConsultantsSales2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SalesManagementSystemModel.GetConsultantsSales2_Result">
+          <ScalarProperty Name="ConsultantId" ColumnName="ConsultantId" />
+          <ScalarProperty Name="ConsultantReferrerId" ColumnName="ConsultantReferrerId" />
+          <ScalarProperty Name="ConsultantName" ColumnName="ConsultantName" />
+          <ScalarProperty Name="ConsultantSurname" ColumnName="ConsultantSurname" />
+          <ScalarProperty Name="ConsultantIdNumber" ColumnName="ConsultantIdNumber" />
+          <ScalarProperty Name="ConsultantDateOfBirth" ColumnName="ConsultantDateOfBirth" />
+          <ScalarProperty Name="TotalSales" ColumnName="TotalSales" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

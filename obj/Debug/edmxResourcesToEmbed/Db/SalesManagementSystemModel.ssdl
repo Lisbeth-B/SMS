@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SalesManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Consultant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Sex" Type="tinyint" Nullable="false" />
+    <Property Name="DateOfBirth" Type="date" Nullable="false" />
+    <Property Name="ReferrerId" Type="int" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetimeoffset" Precision="7" Nullable="false" />
+    <Property Name="ConsultantId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderLineItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderId" Type="int" Nullable="false" />
+    <Property Name="ProductCode" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sex">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="tinyint" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Consultant_ReferrerId">
+    <End Role="Consultant" Type="Self.Consultant" Multiplicity="0..1" />
+    <End Role="Consultant1" Type="Self.Consultant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Consultant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Consultant1">
+        <PropertyRef Name="ReferrerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Consultant_Sex">
+    <End Role="Sex" Type="Self.Sex" Multiplicity="1" />
+    <End Role="Consultant" Type="Self.Consultant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sex">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Consultant">
+        <PropertyRef Name="Sex" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Consultant">
+    <End Role="Consultant" Type="Self.Consultant" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Consultant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="ConsultantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderLine_OrderId">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderLineItem" Type="Self.OrderLineItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderLineItem">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderLine_ProductCode">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="OrderLineItem" Type="Self.OrderLineItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Code" />
+      </Principal>
+      <Dependent Role="OrderLineItem">
+        <PropertyRef Name="ProductCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetConsultantByFrequentlyAndProfitableProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConsultantId" Type="int" Mode="In" />
+    <Parameter Name="StartDate" Type="datetimeoffset" Mode="In" />
+    <Parameter Name="EndDate" Type="datetimeoffset" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ConsultantId" Type="int" />
+          <Property Name="ConsultantName" Type="nvarchar" MaxLength="20" />
+          <Property Name="ConsultantSurname" Type="nvarchar" MaxLength="50" />
+          <Property Name="ConsultantIdNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="ConsultantDateOfBirth" Type="datetime" />
+          <Property Name="FrequentlySoldProductCode" Type="int" />
+          <Property Name="FrequentlySoldProductName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FrequentlySoldProductTotalPrice" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="ProfitableProductCode" Type="int" />
+          <Property Name="ProfitableProductName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProfitableProductTotalPrice" Type="decimal" Precision="19" Scale="4" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="GetConsultantSales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConsultantId" Type="int" Mode="In" />
+    <Parameter Name="StartDate" Type="datetimeoffset" Mode="In" />
+    <Parameter Name="EndDate" Type="datetimeoffset" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ConsultantId" Type="int" Nullable="false" />
+          <Property Name="ConsultantName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ConsultantSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ConsultantIdNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ConsultantDateOfBirth" Type="date" Nullable="false" />
+          <Property Name="TotalSales" Type="decimal" Precision="38" Scale="4" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="GetConsultantsByFrequentlyAndProfitableProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StartDateProvided" Type="datetimeoffset" Mode="In" />
+    <Parameter Name="EndDateProvided" Type="datetimeoffset" Mode="In" />
+  </Function>
+  <Function Name="GetConsultantsByFrequentlySoldProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StartDate" Type="datetimeoffset" Mode="In" />
+    <Parameter Name="EndDate" Type="datetimeoffset" Mode="In" />
+    <Parameter Name="ProductCode" Type="int" Mode="In" />
+    <Parameter Name="ProductMinAmount" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetConsultantsSales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StartDateProvided" Type="datetimeoffset" Mode="In" />
+    <Parameter Name="EndDateProvided" Type="datetimeoffset" Mode="In" />
+  </Function>
+  <Function Name="GetConsultantsSales2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StartDateProvided" Type="datetimeoffset" Mode="In" />
+    <Parameter Name="EndDateProvided" Type="datetimeoffset" Mode="In" />
+  </Function>
+  <Function Name="GetOrdersByConsultant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StartDate" Type="datetimeoffset" Mode="In" />
+    <Parameter Name="EndDate" Type="datetimeoffset" Mode="In" />
+  </Function>
+  <Function Name="GetOrdersByProductPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StartDate" Type="datetimeoffset" Mode="In" />
+    <Parameter Name="EndDate" Type="datetimeoffset" Mode="In" />
+    <Parameter Name="MinPrice" Type="decimal" Mode="In" />
+    <Parameter Name="MaxPrice" Type="decimal" Mode="In" />
+  </Function>
+  <EntityContainer Name="SalesManagementSystemModelStoreContainer">
+    <EntitySet Name="Consultant" EntityType="Self.Consultant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderLineItem" EntityType="Self.OrderLineItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sex" EntityType="Self.Sex" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Consultant_ReferrerId" Association="Self.FK_Consultant_ReferrerId">
+      <End Role="Consultant" EntitySet="Consultant" />
+      <End Role="Consultant1" EntitySet="Consultant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Consultant_Sex" Association="Self.FK_Consultant_Sex">
+      <End Role="Sex" EntitySet="Sex" />
+      <End Role="Consultant" EntitySet="Consultant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Consultant" Association="Self.FK_Order_Consultant">
+      <End Role="Consultant" EntitySet="Consultant" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderLine_OrderId" Association="Self.FK_OrderLine_OrderId">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderLineItem" EntitySet="OrderLineItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderLine_ProductCode" Association="Self.FK_OrderLine_ProductCode">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderLineItem" EntitySet="OrderLineItem" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

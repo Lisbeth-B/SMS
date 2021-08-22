@@ -1,0 +1,86 @@
+﻿@model IEnumerable<SalesManagementSystem.Domain.ConsultantSales>
+
+<h2>კონსულტანტები ჯამური გაყიდვების მიხედვით</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.Label("Start Date", htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-11">
+                @Html.Editor("StartDate", new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @max = "9999-12-31T23:59", @step = "1" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("End Date", htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-11">
+                @Html.Editor("EndDate", new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @max = "9999-12-31T23:59", @step = "1" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-11">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsultantId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsultantName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsultantSurname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsultantIdNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsultantDateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sales)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalSales)
+        </th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelitem => item.ConsultantId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.ConsultantName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.ConsultantSurname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.ConsultantIdNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.ConsultantDateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Sales)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.TotalSales)
+            </td>
+        </tr>
+    }
+
+</table>
+
